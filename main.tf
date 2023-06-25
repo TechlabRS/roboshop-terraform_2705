@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-vpc.git"
+  source = "git::https://github.com/TechlabRS/tf-module-vpc.git"
 
   for_each   = var.vpc
   cidr_block = each.value["cidr_block"]
@@ -14,7 +14,7 @@ module "vpc" {
 
 
 //module "app" {
-//  source = "git::https://github.com/raghudevopsb72/tf-module-app.git"
+//  source = "git::https://github.com/TechlabRS/tf-module-app.git"
 //
 //  for_each         = var.app
 //  instance_type    = each.value["instance_type"]
@@ -38,7 +38,7 @@ module "vpc" {
 
 
 module "docdb" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-docdb.git"
+  source = "git::https://github.com/TechlabRS/tf-module-docdb.git"
 
   for_each       = var.docdb
   subnets        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
